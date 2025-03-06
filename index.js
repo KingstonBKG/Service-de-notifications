@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const config = require('./config/config');
 const app = express();
+const emailRoute = require('./api/routes/emailRoute');
 
 const allowedOrigins = [
   'http://localhost:3000',];
@@ -21,6 +22,12 @@ app.use(cors(corsOptions));
 
 
 app.use(express.json());
+
+
+
+app.use('/api/sendmail', emailRoute);
+
+
 
 // Gestion des routes non trouvées pour l'API
 app.get('/api/*', (req, res) => {
